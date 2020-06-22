@@ -64,7 +64,5 @@ public class BoardServiceTests{
 		board.setTitle("타이틀수정");
 		log.info(service.modify(board));
 	}
-	
-	
 }
 
