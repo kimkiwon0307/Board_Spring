@@ -20,6 +20,12 @@ public class BoardController {
 
 	private BoardService service; // BoardController는 BoardService에 의존적이므로 @AllArgsConstructor를 이용해서 생성자를 자동 주입
 
+	@GetMapping("/list")
+	public void list(Model model) {
+		model.addAttribute("list",service.getList());
+	}
+	
+	
 	@PostMapping("/register")
 	public String register(BoardVO board, RedirectAttributes rttr) {
 		service.register(board);
