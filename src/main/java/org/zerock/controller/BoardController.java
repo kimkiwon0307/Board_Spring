@@ -33,7 +33,8 @@ public class BoardController {
 	@PostMapping("/register")
 	public String register(BoardVO board, RedirectAttributes rttr) {
 		service.register(board);
-		rttr.addFlashAttribute("result", board.getBno());
+	
+		rttr.addFlashAttribute("result", 111);
 		return "redirect:/board/list";
 	}
 	
