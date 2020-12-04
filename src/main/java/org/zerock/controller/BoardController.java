@@ -24,6 +24,11 @@ public class BoardController {
 		
 		model.addAttribute("list",service.getList());
 	}
+
+	@GetMapping("/register")
+	public void register() {
+	}
+	
 	
 	@PostMapping("/register")
 	public String register(BoardVO board, RedirectAttributes rttr) {
@@ -37,7 +42,7 @@ public class BoardController {
 		return "redirect:/board/list";
 	}
 	
-	@GetMapping("/get")
+	@GetMapping({"/get","/modify"})
 	public void get(@RequestParam("bno") Long bno, Model model) {
 		
 		//@RequestParam("bno")는 bno값을 더 명시적으로 처리하려고 사용 
