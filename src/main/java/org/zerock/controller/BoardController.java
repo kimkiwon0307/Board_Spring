@@ -48,6 +48,8 @@ public class BoardController {
 		//@RequestParam("bno")는 bno값을 더 명시적으로 처리하려고 사용 
 		
 		model.addAttribute("board", service.get(bno));
+	
+	
 	}
 	
 	@PostMapping("/modify")
