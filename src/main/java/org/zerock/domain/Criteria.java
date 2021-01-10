@@ -12,8 +12,6 @@ import lombok.ToString;
 @ToString
 public class Criteria {
 		
-	
-	
 	private int pageNum;
 	private int amount;
 	

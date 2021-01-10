@@ -61,11 +61,7 @@ public class BoardController {
 		
 		//@ModelAttribute("cri")Criteria cri 는 자동으로 Model에 데이터를 지정하는 이름으로 담아준다.
 		//@RequestParam("bno")는 bno값을 더 명시적으로 처리하려고 사용 
-		
-		
 		model.addAttribute("board", service.get(bno));
-	
-	
 	}
 	
 	@PostMapping("/modify")
@@ -77,6 +73,7 @@ public class BoardController {
 		
 		rttr.addAttribute("pageNum", cri.getPageNum());
 		rttr.addAttribute("amount", cri.getAmount());
+		
 		
 		return "redirect:/board/list";
 	}

@@ -22,11 +22,12 @@ public class BoardMapperTests {
 	@Setter(onMethod_ = @Autowired)
 	private BoardMapper mapper;
 
-	
-	  @Test public void testGetList() {
+	/*
+	 * @Test public void testGetList() {
+	 * 
+	 * mapper.getList().forEach(board -> log.info(board)); }
+	 */
 	  
-	  mapper.getList().forEach(board -> log.info(board));
-	  }
 	  
 	  @Test public void testInsert() {
 	  
@@ -36,7 +37,9 @@ public class BoardMapperTests {
 	  mapper.insert(board);
 	  
 	  log.info(board); }
+	
 	  
+	
 	  @Test public void testInsertSelectKey() {
 	  
 	  BoardVO board = new BoardVO(); board.setTitle("새로 작성하는 글 select key");
@@ -61,19 +64,21 @@ public class BoardMapperTests {
 	  board.setWriter("user000");
 	  
 	  int count = mapper.update(board); log.info("UPDATE COUNT: " + count); }
+	  
 	 
-	@Test
-	public void testPaging() {
-		
-		Criteria cri = new Criteria();
-		
-		cri.setPageNum(3);
-		cri.setAmount(10);
-		
-		List<BoardVO> list = mapper.getListWithPaging(cri);
-		
-		list.forEach(board -> log.info(board));
-	}
-	
+	  @Test
+	  public void testPaging() {
+	 
+	  Criteria cri = new Criteria();
+	  
+	  cri.setPageNum(3); cri.setAmount(10);
+	  
+	  List<BoardVO> list = mapper.getListWithPaging(cri);
+	  
+	  list.forEach(board -> log.info(board)); 
+	  
+	  }
+	 
+	  
 	
 }
