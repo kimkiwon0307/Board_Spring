@@ -24,6 +24,12 @@ public class BoardController {
 		model.addAttribute("list",service.getList());
 	}
 	
+
+	@GetMapping("/register") // 입력페이지를 보여주기 위해서 추가한다.
+	public void register() {
+	
+	}
+	
 	@PostMapping("/register")
 	public String register(BoardVO board, RedirectAttributes rttr) { 
 		                                // 새로등록된 게시물 번호를 전달하기 위해 RedirectAttributes rttr 사용
@@ -32,7 +38,7 @@ public class BoardController {
 		return "redirect:/board/list";
 	}
 	
-	@GetMapping("/get")
+	@GetMapping({"/get","/modify"})
 	public void get(@RequestParam("bno")Long bno, Model model) {
 				// bno값을 더 명시적으로 처리하기 위해 사용
 		model.addAttribute("board",service.get(bno));
