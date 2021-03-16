@@ -45,4 +45,22 @@
 	</update>
 	
 	
+	
+	<select id="getListWithPaging" resultType="org.zerock.domain.BoardVO">
+		<![CDATA[
+			select bno, title, content, writer, regdate, updatedate
+			from (
+					select /*+INDEX_DESC(tbl_board pk_board) */
+					  rownum rn, bno, title, content, writer, regdate, updatedate
+					 from 
+					  	tbl_board
+					  where rownum <= #{pageNum} * #{amount}
+					  )
+			where rn > (#{pageNum} - 1 ) * #{amount}
+		]]>
+	</select>
+	<!-- 
+	CDATA 섹션은 XML에서 사용할 수 없는 부등호를 사용하기 위함이다.
+	인라인뷰에서는 BoardVO를 구성하는데 필요한 모든 칼럼과 ROWNUM을 RN이라는 가명을 이용해서 만들어 주고 바깥쪽 SQL에서는 RN 칼럼을 조건으로 처리한다. -->
+	
 	</mapper>
