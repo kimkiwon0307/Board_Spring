@@ -20,4 +20,8 @@ public interface BoardMapper {
 		public int update(BoardVO board);
 		
 		public List<BoardVO> getListWithPaging(Criteria cri); // Criteria 를 파라미터로 사용
+		
+		public int getTotalCount(Criteria cri); // mybatis에서 전체 데이터의 개수 처리
+		
+		
 }

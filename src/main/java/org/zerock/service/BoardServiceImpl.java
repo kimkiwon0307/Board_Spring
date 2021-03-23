@@ -47,5 +47,10 @@ public class BoardServiceImpl implements BoardService {
 		// TODO Auto-generated method stub
 		return mapper.getListWithPaging(cri);
 	}
+
+	@Override
+	public int getTotal(Criteria cri) {
+		return mapper.getTotalCount(cri); // Criteria는 굳이 파라미터로 전달될 필요가 없지만 목록과 전체 데이터 개수는 항상 같이동작하므로 파라미터로 지정한다.
+	}
 	
 }

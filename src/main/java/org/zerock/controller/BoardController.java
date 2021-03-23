@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.zerock.domain.BoardVO;
 import org.zerock.domain.Criteria;
+import org.zerock.domain.PageDTO;
+import org.zerock.domain.ReplyVO;
 import org.zerock.service.BoardService;
 
 import lombok.AllArgsConstructor;
@@ -26,9 +28,13 @@ public class BoardController {
 	 * model.addAttribute("list",service.getList()); }
 	 */
 	
-	@GetMapping
+	@GetMapping("/list")
 	public void list(Criteria cri, Model model) {
 		model.addAttribute("list", service.getList(cri));
+		//model.addAttribute("pageMaker",new PageDTO(cri,123));
+		int total = service.getTotal(cri);
+		
+		model.addAttribute("pageMaker",new PageDTO(cri, total));
 	}
 	
 
@@ -42,6 +48,7 @@ public class BoardController {
 		                                // 새로등록된 게시물 번호를 전달하기 위해 RedirectAttributes rttr 사용
 		service.register(board);
 		rttr.addFlashAttribute("result", board.getBno());
+		
 		return "redirect:/board/list";
 	}
 	
@@ -49,6 +56,7 @@ public class BoardController {
 	public void get(@RequestParam("bno")Long bno, Model model) {
 				// bno값을 더 명시적으로 처리하기 위해 사용
 		model.addAttribute("board",service.get(bno));
+		model.addAttribute("reply", new ReplyVO());
 	}
 	
 	@PostMapping("/modify")
